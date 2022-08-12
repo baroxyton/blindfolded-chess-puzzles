@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+body, .select, #gamearea, #game, #moveinfo{
+	background-color:#222222;
+	color:#ffffff;
+	font-family: 'Roboto Mono', monospace;
+	display:grid;
+	justify-content:center;
+	align-content:center;
+	margin:0;
+	text-align:center;
+}
+
+.button{
+	padding:5px;
+	background-color:#1C5D99;
+	border-radius:3px;
+	font-size:calc(2vh + 2vw);
+	display:inline-block;
+	transition: scale 0.1s;
+	scale:1;
+	margin:5px;
+}
+input{
+	padding:5px;
+	font-size:calc(1.5vh + 1.5vw);
+	color:#22;
+}
+
+.button:hover{
+	cursor: pointer;
+	scale: 1.05;
+}
+h1{
+	font-size:calc(2vh + 2vw);
+}
+h2{
+	font-size:calc(1.5vh + 1.5vw);
+}
+#game{
+	display:none;
+}
+.toolbar{
+	color:#639FAB;
+	width:100%;
+	display:flex;
+}
+.toolbar, .toolbar .button{
+	font-size:calc(0.7vh + 0.7vw) !important;
+}
+.toolbar > *{
+	margin:5px;
+}
+
+.sidebar{
+	position:fixed;
+	top:50%;
+	right:0;
+	transform: translate(0, -50%);
+	color:#639FAB;
+	font-size:calc(2vh + 2vw);
+	margin:3px;
+}
+#prompt{
+	display:none;
+}
+#moveinfo{
+	display:none;
+}
+#puzzleresult{
+	display:none;
+}
+#chessrender{
+display:none;
+}
+
+.square{
+	height:calc(2vh + 2vw);
+	width:calc(2vh + 2vw);
+	display:inline-block;
+	text-align:center;
+	vertical-align: middle;
+	font-size:calc(1.5vh + 1.5vw);
+}

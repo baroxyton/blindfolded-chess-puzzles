@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" href="./main.css">
+	</head>
+	<body>
+		<div id="start">
+			<h1>Blindfolded Chess Tactics</h1>
+			<div class="select">
+				<div>
+					<div class="button" id="start_pgn">PGN training</div>
+					<div class="button" id="pgntraining">?</div>
+				</div>
+				<div>
+					<div class="button" id="start_fen">FEN training</div>
+					<div class="button" id="fentraining">?</div>
+				</div>
+				<div>
+					<div class="button">Visual memory training</div>
+					<div class="button" id="vmtraining">?</div>
+				</div>
+
+			</div>
+		</div>
+		<div id="game">
+			<div class="toolbar">
+				<div class="button" id="go_back">Go back</div>
+				<div id="prating">100 elo puzzle</div>
+				<div>&nbsp;|&nbsp;</div>
+				<div id="movesleft">moves: 3/10</div>
+				<div>&nbsp;|&nbsp;</div>
+				<div> enable speech synthezizer <input id="enable_tts" type="checkbox"></div>
+				<div> show reference board <input type="checkbox" id="enable_board"></div>
+			</div>
+			<div id="gamearea">
+				<div id="prompt">
+					<h1 id="promptmessage">White to move</h1>
+					<input autofocus id="promptinput">
+					<div class="button" id="promptnext">Move (Enter)</div>
+				</div>
+				<div id="moveinfo">
+					<h1>Move</h1>
+					<h2 id="infotext">Black: Nc3</h2>
+					<div id="infonext" class="button">Next (Enter)</div>
+					<div id="lipuzzle"></div>
+				</div>
+				<div id="puzzleresult">
+					<h1>Correct!</h1>
+					<div class="button">continue</div>
+				</div>
+				<div id="chessrender"></div>
+
+			</div>
+			<div class="sidebar" id="elo_display">1000 elo</div>
+		</div>
+		<script type="module" src="./main.js"></script>
+	</body>
+</html>
