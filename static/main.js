@@ -1,5 +1,6 @@
 import chessRender from "./chessrender.js";
 import PgnGame from "./pgn_training_session.js";
+import FenGame from "./fen_training_session.js";
 import store from "./localstorage.js";
 
 const HELP_PGN = `All game moves will be shown to you. You need to visualize the moves and find the best move(s)`;
@@ -14,6 +15,15 @@ function train_pgn(){
 	}
 	new PgnGame(store);
 }
+function train_fen(){
+	document.getElementById("start").style.display = "none";
+	document.getElementById("game").style.display = "grid";
+	if(store.data.enable_board){
+		document.getElementById("chessrender").style.display = "block";
+	}
+	new FenGame(store);
+}
+
 function goBack(){
 	document.getElementById("start").style.display = "grid";
 	document.getElementById("game").style.display = "none";
@@ -47,7 +57,7 @@ document.getElementById("pgntraining").addEventListener("click", ()=>{alert(HELP
 document.getElementById("fentraining").addEventListener("click", ()=>{alert(HELP_FEN)});
 document.getElementById("vmtraining").addEventListener("click", ()=>{alert(HELP_VM)});
 document.getElementById("start_pgn").addEventListener("click", ()=>{train_pgn()});
-document.getElementById("start_fen").addEventListener("click", ()=>{train_pgn()});
+document.getElementById("start_fen").addEventListener("click", ()=>{train_fen()});
 document.getElementById("go_back").addEventListener("click", ()=>{goBack()});
 document.getElementById("enable_board").addEventListener("click", ()=>{toggle_board()});
 document.getElementById("enable_tts").addEventListener("click", ()=>{toggle_tts()});

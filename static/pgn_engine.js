@@ -50,7 +50,7 @@ class Engine{
 		for(let r = 0; r < 8; r++){
 			this.board[r] = [];
 		}
-		let rows = fen.split("/").reverse();
+		let rows = fen.split(" ")[0].split("/").reverse();
 		rows.forEach((rowfen,i)=>{
 			let row = this.board[i];
 			let pieces = rowfen.split("");

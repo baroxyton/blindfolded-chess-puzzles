@@ -47,14 +47,24 @@ class FenTraining{
 		let move_num = piece_count + this.data.moves.split(" ").length - 1;
 		document.getElementById("movesleft").innerText = `moves: 1/${move_num}` 
 		let move_count = 0;
-		document.getElementById("prating").innerText = `${Math.round(this.game.rating.pgn_rating)} elo puzzle` 
-		this.engine = new Engine(this.game.pgn);
+		document.getElementById("prating").innerText = `${Math.round(this.game.rating.fen_rating)} elo puzzle` 
+		this.engine = new Engine(null, this.data.fen);
 		let isWhite = true
-		for(const move in this.game.pgn){
+		let pieces = [];
+		// ranks 1-8
+		this.engine.board.forEach((rank,i)=>{
+			// files a-h
+			rank.forEach((square,j)=>{
+				if(square.square.piece){
+					pieces.push({pos:{i,j}, piece:square.square.piece});
+				}		
+			})
+		});	
+		for(const piece in pieces){
 			move_count++;
 			document.getElementById("movesleft").innerText = `moves: ${move_count}/${move_num}` 
 			const color = isWhite?"White":"Black";
-			await info_async(color + ": " + this.game.pgn[move], this.engine.detectMove(this.game.pgn[move]), isWhite, this.enable_tts());	
+			await info_async(color + ": " + pieces[piece].piece, null, isWhite, this.enable_tts());	
 			isWhite = !isWhite;
 		}
 		let userPerspective = isWhite;
@@ -108,12 +118,12 @@ class FenTraining{
 	}
 	finished(success){
 		let elo_diff = success?20:-20;
-		if(this.store.data.pgn_newb_multiplier > 0){
-			elo_diff *= this.store.data.pgn_newb_multiplier * 1.2;
-			this.store.data.pgn_newb_multiplier  -= 0.5;
+		if(this.store.data.fen_newb_multiplier > 0){
+			elo_diff *= this.store.data.fen_newb_multiplier * 1.2;
+			this.store.data.fen_newb_multiplier  -= 0.5;
 		}
-		this.store.data.pgn_elo += elo_diff;
-		this.store.data.pgn_puzzles_solved.push(this.data.puzzleid);
+		this.store.data.fen_elo += elo_diff;
+		this.store.data.fen_puzzles_solved.push(this.data.puzzleid);
 		this.store.save();
 		new FenTraining(this.store); 
 	}
