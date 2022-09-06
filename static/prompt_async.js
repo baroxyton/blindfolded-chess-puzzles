@@ -26,7 +26,12 @@ function prompt_async(message, speechText){
 function info_async(message,move,isWhite,speechText){
 		document.getElementById("lipuzzle").innerHTML = ""; 
 	if(speechText){
+		if(!move){
+			read_text(message)			
+		}
+		else{
 		read_pgn(move, isWhite);
+		}
 	}
 	document.getElementById("moveinfo").style.display = "grid";
 	document.getElementById("infotext").innerText = message;

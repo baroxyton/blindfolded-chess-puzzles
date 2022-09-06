@@ -56,16 +56,17 @@ class FenTraining{
 			// files a-h
 			rank.forEach((square,j)=>{
 				if(square.square.piece){
-					pieces.push({pos:{i,j}, piece:square.square.piece});
+					pieces.push({pos:{i,j}, piece:square.square.piece,color:square.square.color});
 				}		
 			})
 		});	
 		for(const piece in pieces){
 			move_count++;
 			document.getElementById("movesleft").innerText = `moves: ${move_count}/${move_num}` 
-			const color = isWhite?"White":"Black";
-			await info_async(color + ": " + pieces[piece].piece, null, isWhite, this.enable_tts());	
-			isWhite = !isWhite;
+			const color = pieces[piece].color;
+			let pieceName = ({"p":"pawn","n":"knight","b":"bishop","r":"rook", "q":"queen", "k":"king"})[pieces[piece].piece] 
+			let coordName = ["a","b","c","d", "e", "f","g","h"][pieces[piece].pos.j] + (pieces[piece].pos.i + 1)
+			await info_async((color=="w"?"White":"Black") + ": " + pieceName + " on " + coordName, null, isWhite, this.enable_tts());	
 		}
 		let userPerspective = isWhite;
 		let moves = this.data.moves.split(" ").slice(1);
